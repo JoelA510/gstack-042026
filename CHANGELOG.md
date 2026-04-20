@@ -1,5 +1,47 @@
 # Changelog
 
+## [1.6.0.0] - 2026-04-20
+
+## **Fork consolidation: five unmerged branches folded into main, 170 stale branches pending prune.**
+
+This fork (`JoelA510/gstack-042026`) mirrored 180+ branches from upstream `garrytan/gstack`. Most of those branches were already squash-merged upstream, so their content lives on `main` even though their commit history shows them "ahead." This release cherry-picks the five branches with genuinely unmerged post-ship follow-ups: extra security hardening on the sidebar classifier, drift detection for VERSION/package.json, Hetzner CI mirror resiliency, browser media/download commands, and small openclaw skill polish.
+
+### The numbers that matter
+
+Triage done by three parallel Explore agents over the 22 most recently modified branches (`git log -1 --format=%ci` on each `origin/*` ref, filtered to the last two weeks). Verdicts validated by running `git merge --no-commit --no-ff <branch>` on each candidate and inspecting the staged diff for regressions against the current `main`.
+
+| Metric | Before | After |
+|---|---|---|
+| Branches on origin | 180 | 180 (176 slated for deletion) |
+| Branches with genuine new content | 5 of 22 inspected | 5 merged |
+| Merge commits added this release | 0 | 5 |
+| Ambiguous branches that turned out to be superseded snapshots | 3 | 3 (aborted cleanly) |
+| Flaky test regressions vs `main` | 1 (pre-existing, `setup -q` 5s timeout) | 1 (same) |
+
+Three of the four "investigate" branches (`open-agents-learnings`, `fix-checkpoints`, `plan-tune-skill`) resolved to no-ops once conflicts were taken in `main`'s favor. Their feature work had already shipped as v1.3.0.0 / v1.0.1.0 / v1.5.1.0; what remained on the branches was older pre-merge state that would have rolled back newer code. The only one in that batch that added anything was `gstacklite-split`, which contributes eight lines of openclaw skill polish (non-regenerated, hand-authored ClawHub skills).
+
+### What this means for the fork
+
+Post-ship hardening that was in flight upstream is now on `main`: the sidebar classifier enforces its allow/block decision via tool-call blocking (not just logging), `/ship` fails loudly if `VERSION` and `package.json` drift apart, CI Dockerfile survives individual Hetzner package blips without a full rebuild, and the browse CLI gains `download`/`scrape`/`archive` commands plus base64 screenshot output. The remaining 170+ branches from before early April have no verified unmerged content and are safe to prune in a follow-up. Run `git branch -r | wc -l` before and after pruning to confirm.
+
+### Itemized changes
+
+#### Added
+- `prompt-injection-guard`: Haiku transcript classifier, allow/block decision flow, tool-call blocking tests layered on top of the v1.4.0.0 ML defense.
+- `ship-version-sync`: `/ship` Step 12 drift detection + auto-repair for VERSION vs `package.json`.
+- `tilde-fix-design`: Hetzner CI mirror resiliency fix + context-rot defense for design skills.
+- `browser-media-scraping`: `download`, `scrape`, `archive` commands; base64 screenshot output; structured data platform extraction.
+- `gstacklite-split`: memory-based non-git context in `/retro`, no-code-changes reminder in `/plan-ceo-review`, design-doc-saved confirmation in `/office-hours` (openclaw published skills only).
+
+#### Changed
+- VERSION bumped from 1.5.1.0 to 1.6.0.0 (minor bump: additive security/feature merges, no breaking changes).
+- `package.json` version aligned with VERSION.
+
+#### For contributors
+- Triage findings and merge strategy documented in `/root/.claude/plans/our-goal-is-to-lively-parnas.md`.
+- Three branches (`open-agents-learnings`, `fix-checkpoints`, `plan-tune-skill`) confirmed to be superseded snapshots; safe to delete when pruning.
+- 14 additional branches confirmed as already-shipped squash-merges (see plan file for the full list with PR references).
+
 ## [1.5.1.0] - 2026-04-20
 
 ## **Three visible bugs in v1.4.0.0 /make-pdf, all fixed.**
