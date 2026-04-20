@@ -59,6 +59,8 @@ These are thinking instincts, not a checklist. Let them shape your perspective t
 
 ## Step 0: Nuclear Scope Challenge + Mode Selection
 
+Before anything else, check memory for a prior design doc from `/office-hours` or an earlier planning pass on this topic. If one exists, read it and treat it as the plan under review. If nothing is in memory, ask the user which plan, design doc, or proposal you are reviewing.
+
 ### 0A. Premise Challenge
 1. Is this the right problem to solve? Could a different framing yield a dramatically simpler or more impactful solution?
 2. What is the actual user/business outcome? Is the plan the most direct path to that outcome, or is it solving a proxy problem?

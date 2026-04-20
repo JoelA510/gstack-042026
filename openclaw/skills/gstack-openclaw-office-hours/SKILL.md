@@ -280,7 +280,7 @@ Count the signals for the closing message.
 ## Phase 5: Design Doc
 
 Write the design document and save it to memory. After writing, tell the user:
-**"Design doc saved. Other skills (/plan-ceo-review, /plan-eng-review) will find it automatically."**
+**"Design doc saved to memory. Run /plan-ceo-review or /plan-eng-review next; they'll pick it up from there."**
 
 ### Startup mode design doc template:
 

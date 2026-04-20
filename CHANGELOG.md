@@ -31,7 +31,7 @@ Post-ship hardening that was in flight upstream is now on `main`: the sidebar cl
 - `ship-version-sync`: `/ship` Step 12 drift detection + auto-repair for VERSION vs `package.json`.
 - `tilde-fix-design`: Hetzner CI mirror resiliency fix + context-rot defense for design skills.
 - `browser-media-scraping`: `download`, `scrape`, `archive` commands; base64 screenshot output; structured data platform extraction.
-- `gstacklite-split`: memory-based non-git context in `/retro`, anti-skip reminder in `/plan-ceo-review`, design-doc-saved confirmation in `/office-hours` (openclaw published skills only).
+- `gstacklite-split`: memory-based non-git context in `/retro`, no-code-changes reminder in `/plan-ceo-review`, design-doc-saved confirmation in `/office-hours` (openclaw published skills only).
 
 #### Changed
 - VERSION bumped from 1.5.1.0 to 1.6.0.0 (minor bump: additive security/feature merges, no breaking changes).
